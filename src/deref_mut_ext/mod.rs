@@ -1,7 +1,7 @@
 mod map;
 
-use std::ops::{DerefMut};
 use crate::deref_mut_ext::map::Map;
+use std::ops::DerefMut;
 
 pub trait DerefMutExt<A> {
     fn bimap<B, F1, F2>(self, f1: F1, f2: F2) -> Map<Self, F1, F2>
@@ -29,8 +29,8 @@ where
 
 #[cfg(test)]
 mod tests {
-    use std::ops::Deref;
     use super::*;
+    use std::ops::Deref;
     use std::sync::RwLock;
 
     #[test]
@@ -48,5 +48,9 @@ mod tests {
         accept_deref_mut(mapped)
     }
 
-    fn accept_deref_mut<D>(_: D) where D: DerefMut + Deref<Target = i32> {}
+    fn accept_deref_mut<D>(_: D)
+    where
+        D: DerefMut + Deref<Target = i32>,
+    {
+    }
 }
